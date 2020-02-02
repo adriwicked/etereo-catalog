@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import getPhoneList from './services/phones';
+
+import Header from './components/Header/Header';
+import PhoneListContainer from './components/PhoneListContainer/PhoneListContainer';
+import PhoneDetail from './components/PhoneDetail/PhoneDetail';
+
+import './resets.css';
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: false,
+      phoneList: []
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true })
+    getPhoneList()
+      .then(({ data: phoneList }) => {
+        setTimeout(() => {
+          this.setState({ phoneList, loading: false })
+        }, 1000);
+      }).catch(err => console.log(err));
+  }
+
+  getPhoneById(id) {
+    const phone = this.state.phoneList.find(phone => phone.id === id);
+    return phone || null;
+  }
+
+  renderPhoneList = () => {
+    const { loading, phoneList } = this.state;
+    return <PhoneListContainer phoneList={phoneList} loading={loading} />;
+  }
+
+  renderPhoneDetail({ match: { params: { phoneId } } }) {
+    return <PhoneDetail phone={this.getPhoneById(phoneId)} />
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Header />
+        <Router>
+          <Switch>
+            <Route exact path="/" render={this.renderPhoneList} />
+            <Route path="/:phoneId" render={this.renderPhoneDetail} />
+          </Switch>
+        </Router>
+      </Fragment>
+    );
+  }
 }
 
 export default App;

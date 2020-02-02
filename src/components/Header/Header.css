@@ -1,0 +1,14 @@
+.header-container {
+    height: 48px;
+    width: 100%;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Merriweather', sans-serif;
+    color:#fff;
+    background-color: #151618;
+    position: fixed;
+    top: 0;
+}
