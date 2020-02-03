@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+import Spinner from '../Spinner/Spinner'
 import PhoneItem from '../PhoneItem/PhoneItem'
 
 import './PhoneListContainer.css'
@@ -37,21 +38,16 @@ class PhoneListContainer extends React.Component {
   }
 
   render() {
-    const { phoneList, loading } = this.props;
+    const { loading } = this.props;
       return loading ?
-        <div className="spinner-container">
-          <img
-            className="spinner"
-            src="https://pbs.twimg.com/profile_images/1107643598005305344/XqXTQc15_400x400.png"
-            alt="img" />
-        </div> :
+        <Spinner /> :
         <>
           <ul className="phone-list-container">
           {
             this.getCurrentPagePhones().map(({ id, model, img }) => {
               return (
                 <li className="phone-item" key={id}>
-                  <Link className="phone-item-link" to={`/${id}`}>
+                  <Link className="phone-item-link" to={`/phones/${id}`}>
                     <PhoneItem model={model} img={img} />
                   </Link>
                 </li>

@@ -48,8 +48,8 @@ class App extends React.Component {
         <Header />
         <Router>
           <Switch>
-            <Route exact path="/" render={this.renderPhoneList} />
-            <Route path="/:phoneId" render={this.renderPhoneDetail} />
+            <Route exact path="/phones" render={this.renderPhoneList} />
+            <Route path="/phones/:phoneId" render={this.renderPhoneDetail} />
           </Switch>
         </Router>
       </Fragment>
