@@ -38,7 +38,7 @@ class App extends React.Component {
     return <PhoneListContainer phoneList={phoneList} loading={loading} />;
   }
 
-  renderPhoneDetail({ match: { params: { phoneId } } }) {
+  renderPhoneDetail = ({ match: { params: { phoneId } } }) => {
     return <PhoneDetail phone={this.getPhoneById(phoneId)} />
   }
 
