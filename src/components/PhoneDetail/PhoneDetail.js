@@ -1,10 +1,15 @@
 import React from 'react'
+
+import Spinner from '../Spinner/Spinner'
+
 import './PhoneDetail.css'
 
 class PhoneDetail extends React.Component {
     render() {
         const { phone } = this.props;
-        return (
+        return !phone ?
+            <Spinner /> :
+        (
             <div className="main-container">
                 <div className="phone-detail-container">
                     <img className="phone-detail-image"
