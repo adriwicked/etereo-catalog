@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import getPhoneList from './services/phones';
-
 import fetchPhones from './redux/actions'
 
 import Header from './components/Header/Header';
@@ -13,25 +11,10 @@ import PhoneDetail from './components/PhoneDetail/PhoneDetail';
 import './resets.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-      phoneList: []
-    }
-  }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchPhones);
-
-    // this.setState({ loading: true })
-    // getPhoneList()
-    //   .then(({ data: phoneList }) => {
-    //     setTimeout(() => {
-    //       this.setState({ phoneList, loading: false })
-    //     }, 1000);
-    //   }).catch(err => console.log(err));
+    dispatch(fetchPhones());
   }
 
   getPhoneById(id) {

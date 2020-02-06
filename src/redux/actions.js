@@ -5,13 +5,13 @@ export const FETCH_PHONES_SUCCESS = 'FETCH_PHONES_SUCCESS';
 export const FETCH_PHONES_FAILURE = 'FETCH_PHONES_FAILURE';
 
 const fetchPhonesRequest = () => ({ type: FETCH_PHONES_REQUEST });
-const fetchPhonesSuccess = phones => ({ type: FETCH_PHONES_SUCCESS, payload: phones });
+const fetchPhonesSuccess = phoneList => ({ type: FETCH_PHONES_SUCCESS, payload: phoneList });
 const fetchPhonesError = error => ({ type: FETCH_PHONES_FAILURE, payload: error });
 
 
 
 export default function fetchPhones() {
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch(fetchPhonesRequest());
     return getPhoneList()
       .then(({ data: phoneList }) => dispatch(fetchPhonesSuccess(phoneList)))

@@ -16,10 +16,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, loading: true }
 
     case FETCH_PHONES_SUCCESS:
-      return { ...state, loading: false, phones: action.payload, error: '' }
+      return { ...state, loading: false, phoneList: action.payload, error: '' }
 
     case FETCH_PHONES_FAILURE:
-      return { ...state, loading: false, phones: [], error: action.payload }
+      return { ...state, loading: false, phoneList: [], error: action.payload }
   
     default:
       return state;
