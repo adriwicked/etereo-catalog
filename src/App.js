@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import getPhoneList from './services/phones';
+
+import fetchPhones from './redux/actions'
 
 import Header from './components/Header/Header';
 import PhoneListContainer from './components/PhoneListContainer/PhoneListContainer';
@@ -19,22 +22,26 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: true })
-    getPhoneList()
-      .then(({ data: phoneList }) => {
-        setTimeout(() => {
-          this.setState({ phoneList, loading: false })
-        }, 1000);
-      }).catch(err => console.log(err));
+    const { dispatch } = this.props;
+    dispatch(fetchPhones);
+
+    // this.setState({ loading: true })
+    // getPhoneList()
+    //   .then(({ data: phoneList }) => {
+    //     setTimeout(() => {
+    //       this.setState({ phoneList, loading: false })
+    //     }, 1000);
+    //   }).catch(err => console.log(err));
   }
 
   getPhoneById(id) {
-    const phone = this.state.phoneList.find(phone => phone.id === id);
+    const { phoneList } = this.props;
+    const phone = phoneList.find(phone => phone.id === id);
     return phone || null;
   }
 
   renderPhoneList = () => {
-    const { loading, phoneList } = this.state;
+    const { loading, phoneList } = this.props;
     return <PhoneListContainer phoneList={phoneList} loading={loading} />;
   }
 
@@ -57,4 +64,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { phoneList, loading } = state;
+  return {
+    phoneList,
+    loading
+  }
+}
+
+export default connect(mapStateToProps)(App);

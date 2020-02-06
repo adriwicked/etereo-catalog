@@ -1,0 +1,44 @@
+.phone-list {
+    &__container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 140px 0 30px 0;
+        padding: 0 30px;
+    }
+
+    &__item {
+        list-style: none;
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+}
+
+.paginator {
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__button {
+        background-color: #202226;
+        border: none;
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 20px;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    &__current-page {
+        background-color: #202226;
+        margin: 0 15px;
+        font-size: 20px;
+        color: #fff;
+        padding: 10px 20px;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+}

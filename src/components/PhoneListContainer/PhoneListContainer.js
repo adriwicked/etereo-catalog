@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner'
 import PhoneItem from '../PhoneItem/PhoneItem'
 
-import './PhoneListContainer.css'
+import './PhoneListContainer.scss'
 
 class PhoneListContainer extends React.Component {
   constructor(props) {
@@ -42,12 +42,12 @@ class PhoneListContainer extends React.Component {
       return loading ?
         <Spinner /> :
         <>
-          <ul className="phone-list-container">
+          <ul className="phone-list__container">
           {
             this.getCurrentPagePhones().map(({ id, model, img }) => {
               return (
-                <li className="phone-item" key={id}>
-                  <Link className="phone-item-link" to={`/phones/${id}`}>
+                <li className="phone-list__item" key={id}>
+                  <Link className="phone-list__link" to={`/phones/${id}`}>
                     <PhoneItem model={model} img={img} />
                   </Link>
                 </li>
@@ -55,10 +55,10 @@ class PhoneListContainer extends React.Component {
             })
           }
           </ul>
-          <div className="paginator-container">
-            <button className="pagination-button" onClick={this.goToPrevPage}>prev</button>
-            <p className="current-page">{this.state.page + 1}</p>
-            <button className="pagination-button" onClick={this.goToNextPage}>next</button>
+          <div className="paginator__container">
+            <button className="paginator__button" onClick={this.goToPrevPage}>prev</button>
+            <p className="paginator__current-page">{this.state.page + 1}</p>
+            <button className="paginator__button" onClick={this.goToNextPage}>next</button>
           </div>
         </>
     }
