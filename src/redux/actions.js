@@ -8,9 +8,7 @@ const fetchPhonesRequest = () => ({ type: FETCH_PHONES_REQUEST });
 const fetchPhonesSuccess = phoneList => ({ type: FETCH_PHONES_SUCCESS, payload: phoneList });
 const fetchPhonesError = error => ({ type: FETCH_PHONES_FAILURE, payload: error });
 
-
-
-export default function fetchPhones() {
+export function fetchPhones() {
   return (dispatch) => {
     dispatch(fetchPhonesRequest());
     return getPhoneList()

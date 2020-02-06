@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import fetchPhones from './redux/actions'
+import { fetchPhones } from './redux/actions'
 
 import Header from './components/Header/Header';
 import PhoneListContainer from './components/PhoneListContainer/PhoneListContainer';
